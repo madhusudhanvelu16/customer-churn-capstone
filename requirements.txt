@@ -1,0 +1,19 @@
+# Core Machine Learning & Data Processing
+numpy>=1.25.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+joblib>=1.3.0
+lightgbm>=4.0.0
+
+# API Backend
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+pydantic>=2.0.0
+
+# Testing & Client
+pytest>=7.4.0
+httpx>=0.25.0
+
+# Frontend (for Phase 2 Streamlit integration)
+streamlit>=1.30.0
+requests>=2.31.0

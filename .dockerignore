@@ -1,0 +1,36 @@
+# Exclude git and VCS
+.git/
+.gitignore
+
+# Exclude Python byte-code and caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Exclude virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Exclude local environment files
+.env
+*.env.local
+
+# Exclude IDE and editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Exclude OS files
+.DS_Store
+Thumbs.db
+
+# Exclude docs and test files from production images
+tests/
+README.md

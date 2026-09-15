@@ -1,0 +1,32 @@
+# Dedicated production Dockerfile for ConnectTel FastAPI backend
+FROM python:3.11-slim AS backend
+
+WORKDIR /app
+
+# Install system dependencies: curl for healthchecks, libgomp1 for LightGBM OpenMP support
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy backend dependencies
+COPY requirements-backend.txt .
+
+# Install Python packages
+RUN pip install --no-cache-dir -r requirements-backend.txt
+
+# Copy application source and serialized ML pipeline
+COPY app/ app/
+COPY model/ model/
+
+EXPOSE 8000
+
+ENV PYTHONUNBUFFERED=1
+ENV MODEL_PATH=model/churn_pipeline.joblib
+
+# Healthcheck testing FastAPI /health endpoint
+HEALTHCHECK --interval=20s --timeout=5s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:8000/health || exit 1
+
+# Start production uvicorn server binding to 0.0.0.0
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

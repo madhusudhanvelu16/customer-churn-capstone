@@ -1,0 +1,74 @@
+{
+  "model_name": "LightGBM",
+  "model_class": "LGBMClassifier",
+  "pipeline_file": "churn_pipeline.joblib",
+  "training_samples": 5634,
+  "target_col": "Churn",
+  "class_balance": {
+    "negative_0": 4139,
+    "positive_1": 1495,
+    "scale_pos_weight": 2.768561872909699
+  },
+  "cv_performance": {
+    "roc_auc_mean": 0.8469330134263972,
+    "roc_auc_std": 0.01173970831210646,
+    "recall_mean": 0.7919732441471572,
+    "recall_std": 0.02119462142843458,
+    "precision_mean": 0.5204322195812021,
+    "precision_std": 0.012639109912406474,
+    "f1_mean": 0.6280956895455524,
+    "f1_std": 0.015587082430537772,
+    "accuracy_mean": 0.751155002119776,
+    "accuracy_std": 0.010141689760398495
+  },
+  "all_cv_benchmarks": {
+    "LogisticRegression": {
+      "roc_auc_mean": 0.8454292563377945,
+      "roc_auc_std": 0.01283100937430547,
+      "recall_mean": 0.8013377926421403,
+      "recall_std": 0.03892263953438437,
+      "precision_mean": 0.5178490447832285,
+      "precision_std": 0.019906427570768784,
+      "f1_mean": 0.6289224546317167,
+      "f1_std": 0.024163774537798513,
+      "accuracy_mean": 0.7492027593337125,
+      "accuracy_std": 0.01603355806842462
+    },
+    "RandomForest": {
+      "roc_auc_mean": 0.8448161502187601,
+      "roc_auc_std": 0.011096267415062916,
+      "recall_mean": 0.7832775919732441,
+      "recall_std": 0.018488662155298024,
+      "precision_mean": 0.5219362971566183,
+      "precision_std": 0.013100445816787635,
+      "f1_mean": 0.6263960154160914,
+      "f1_std": 0.014389593672177167,
+      "accuracy_mean": 0.7520426287744227,
+      "accuracy_std": 0.010277027988326982
+    },
+    "XGBoost": {
+      "roc_auc_mean": 0.8462699693473803,
+      "roc_auc_std": 0.010728193301941856,
+      "recall_mean": 0.7899665551839465,
+      "recall_std": 0.02232551072679419,
+      "precision_mean": 0.522841511169419,
+      "precision_std": 0.01165927764117157,
+      "f1_mean": 0.6291547250580992,
+      "f1_std": 0.014170972438331049,
+      "accuracy_mean": 0.7529302554290693,
+      "accuracy_std": 0.009189520127412934
+    },
+    "LightGBM": {
+      "roc_auc_mean": 0.8469330134263972,
+      "roc_auc_std": 0.01173970831210646,
+      "recall_mean": 0.7919732441471572,
+      "recall_std": 0.02119462142843458,
+      "precision_mean": 0.5204322195812021,
+      "precision_std": 0.012639109912406474,
+      "f1_mean": 0.6280956895455524,
+      "f1_std": 0.015587082430537772,
+      "accuracy_mean": 0.751155002119776,
+      "accuracy_std": 0.010141689760398495
+    }
+  }
+}

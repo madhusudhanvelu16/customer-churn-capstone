@@ -1,0 +1,30 @@
+# Dedicated production Dockerfile for ConnectTel Streamlit frontend
+FROM python:3.11-slim AS frontend
+
+WORKDIR /app
+
+# Install curl for container healthcheck
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy frontend dependencies
+COPY requirements-frontend.txt .
+
+# Install Python packages
+RUN pip install --no-cache-dir -r requirements-frontend.txt
+
+# Copy frontend source code (model is intentionally excluded)
+COPY frontend/ frontend/
+
+EXPOSE 8501
+
+ENV PYTHONUNBUFFERED=1
+ENV BACKEND_URL=http://backend:8000
+
+# Healthcheck testing Streamlit native health endpoint
+HEALTHCHECK --interval=20s --timeout=5s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:8501/_stcore/health || exit 1
+
+# Start Streamlit application binding to 0.0.0.0
+CMD ["streamlit", "run", "frontend/streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0", "--server.headless=true", "--browser.gatherUsageStats=false"]

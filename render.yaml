@@ -1,0 +1,55 @@
+# render.yaml — Render Infrastructure-as-Code
+# Deploys both FastAPI backend and Streamlit frontend as separate web services.
+# Reference: https://render.com/docs/blueprint-spec
+#
+# USAGE:
+#   1. Push this repository to GitHub.
+#   2. In Render dashboard: New → Blueprint → connect this repo.
+#   3. Set BACKEND_URL environment variable on the frontend service
+#      to the actual deployed backend URL after first deployment.
+#
+# NOTE: Free tier services spin down after inactivity (cold start ~30s).
+# Upgrade to paid tier for always-on production use.
+
+services:
+  # ─────────────────────────────────────────────
+  # SERVICE 1: FastAPI Backend
+  # ─────────────────────────────────────────────
+  - type: web
+    name: connecttel-churn-backend
+    runtime: docker
+    dockerfilePath: ./Dockerfile.backend
+    # Render injects $PORT; the Dockerfile CMD uses port 8000.
+    # For Render compatibility, start command overrides to use $PORT.
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MODEL_PATH
+        value: model/churn_pipeline.joblib
+      - key: PYTHONUNBUFFERED
+        value: "1"
+    healthCheckPath: /health
+    autoDeploy: true
+
+  # ─────────────────────────────────────────────
+  # SERVICE 2: Streamlit Frontend
+  # ─────────────────────────────────────────────
+  - type: web
+    name: connecttel-churn-frontend
+    runtime: docker
+    dockerfilePath: ./Dockerfile.frontend
+    # Render injects $PORT; start command uses it.
+    startCommand: >
+      streamlit run frontend/streamlit_app.py
+      --server.port=$PORT
+      --server.address=0.0.0.0
+      --server.headless=true
+      --browser.gatherUsageStats=false
+    envVars:
+      - key: BACKEND_URL
+        # IMPORTANT: Replace this placeholder with the actual deployed
+        # backend URL after the backend service is first deployed.
+        # Example: https://connecttel-churn-backend.onrender.com
+        value: https://YOUR_BACKEND_SERVICE.onrender.com
+      - key: PYTHONUNBUFFERED
+        value: "1"
+    autoDeploy: true
