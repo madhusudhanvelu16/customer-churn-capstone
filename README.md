@@ -1,6 +1,6 @@
 # ConnectTel Customer Churn Prediction — AI Application Capstone
 
-[![CI](https://github.com/YOUR_USERNAME/customer-churn-capstone/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/customer-churn-capstone/actions/workflows/ci.yml)
+[![CI](https://github.com/madhusudhanvelu16/customer-churn-capstone/actions/workflows/ci.yml/badge.svg)](https://github.com/madhusudhanvelu16/customer-churn-capstone/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com/)
 [![Docker](https://img.shields.io/badge/Docker-ready-blue.svg)](https://www.docker.com/)
@@ -157,7 +157,7 @@ customer-churn-capstone/
 ### Install Dependencies
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/customer-churn-capstone.git
+git clone https://github.com/madhusudhanvelu16/customer-churn-capstone.git
 cd customer-churn-capstone
 
 python -m venv .venv
@@ -454,16 +454,16 @@ After creating your GitHub repositories, run:
 ```bash
 # customer-churn-capstone
 cd customer-churn-capstone
-git remote add origin https://github.com/YOUR_USERNAME/customer-churn-capstone.git
+git remote add origin https://github.com/madhusudhanvelu16/customer-churn-capstone.git
 git push -u origin main
 
 # customer-churn-project
 cd ../customer-churn-project
-git remote add origin https://github.com/YOUR_USERNAME/customer-churn-project.git
+git remote add origin https://github.com/madhusudhanvelu16/customer-churn-project.git
 git push -u origin main
 ```
 
-Replace `YOUR_USERNAME` with your actual GitHub username.
+Replace `YOUR_BACKEND_SERVICE` with the actual Render backend service name after deployment.
 
 ---
 
